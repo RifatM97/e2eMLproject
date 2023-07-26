@@ -49,5 +49,15 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
 
         return report
 
-    except:
-        pass
+    except Exception as e:
+        raise CustomException(e, sys)
+    
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj) #loads the pickle file that saved the model
+
+    except Exception as e:
+        raise CustomException(e, sys)
+
+        
